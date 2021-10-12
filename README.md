@@ -12,17 +12,17 @@
 
 ## Pandas
 
-**pd.read_html()**
+**1.pd.read_html()**
 填寫你要爬取的網站
 
-**Series and DataFrame**
+**2.Series and DataFrame**
 Series 為單串列資料
 DataFrame 為二維資料
 這邊抓出來的資料格式為 DataFrame
 
-**資料處理**
+**3.資料處理**
 用 DataFrame.loc 將符合條件的資料篩選出來，條件是 到期月份 == 202110 ，這邊的 到期月份 用dtype看資料格式是 int64
 之後使用 DataFrame.filter() 將 欄位是契約及成交價 抓成另一個變數並且重新命名
 
-**pd.merge()**
+**4.pd.merge()**
 最後再透過 Pandas 提供的 API merge() ，將兩個 dataframe 透過相同的 Key 合併
