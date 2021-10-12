@@ -26,3 +26,10 @@ DataFrame 為二維資料
 
 **4.pd.merge()**
 最後再透過 Pandas 提供的 API merge() ，將兩個 dataframe 透過相同的 Key 合併
+
+## 還可以進步的地方
+1. 保證金計算
+目前保證金倍率是 string ，要將資料格式轉成 float 
+2. 新增欄位
+3. 保證金由小到大排序
+4. 抓取其他日的股票期貨價格
