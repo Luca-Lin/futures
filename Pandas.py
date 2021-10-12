@@ -4,10 +4,6 @@ import pandas as pd
 
 margin_table = pd.read_html("https://www.taifex.com.tw/cht/5/stockMargining")
 margin_df = margin_table[0]
-# test = margin_df.loc[margin_df["結算保證金適用比例"] == "10.00%"]
-# a = test[test["股票期貨英文代碼"] == "CAF"].filter(items=["結算保證金適用比例"])
-
-# a = margin_df["股票期貨英文代碼"]
 
 print("===============")
 prices_table = pd.read_html("https://histock.tw/stock/future.aspx")
