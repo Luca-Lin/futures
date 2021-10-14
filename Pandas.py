@@ -14,7 +14,7 @@ print("抓取資料2....")
 prices_table = pd.read_html("https://histock.tw/stock/future.aspx")
 
 prices_df = prices_table[-1]
-prices_df.to_csv('prices.csv',index=False)
+prices_df.to_csv('./csv/prices.csv',index=False)
 
 print(prices_df)
 print("OK")
@@ -26,7 +26,7 @@ result = pd.merge(margin_df, filter_price, on="股票期貨英文代碼")
 print("合併成功....")
 print(result)
 
-result.to_csv(str(today)+'.csv',index=False)
+result.to_csv('./csv/'+str(today)+'.csv',index=False)
 
 # excel open csv encoding = utf-8
 # https://officeguide.cc/excel-import-csv-file-with-utf8-big5-encoding-tutorial-examples/
