@@ -3,14 +3,15 @@
 需要將 股票期貨價格 * 2000 * 保證金倍率
 但價格 與 保證金倍率 在不同網站
 
-[保證金倍率網站](https://www.taifex.com.tw/cht/5/stockMargining)
+[保證金比例網站](https://www.taifex.com.tw/cht/5/stockMargining)
 [股票期貨價格網站](https://histock.tw/stock/future.aspx)
+[StockList.csv 來源](https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E6%99%BA%E6%85%A7%E9%81%B8%E8%82%A1&INDUSTRY_CAT=%E8%82%A1%E7%A5%A8%E6%9C%9F%E8%B2%A8%E6%A8%99%E7%9A%84)
 
 ## Beautiful Soup
 
 原本使用 Beautiful Soup 做爬蟲工具，但發現 Pandas 在處理表格上更為方便，也有可能是我不會用 Beautiful Soup XD
 
-## Pandas
+## Pandas.py
 
 **1.pd.read_html()**
 填寫你要爬取的網站
@@ -27,9 +28,10 @@ DataFrame 為二維資料
 **4.pd.merge()**
 最後再透過 Pandas 提供的 API merge() ，將兩個 dataframe 透過相同的 Key 合併
 
-## 還可以進步的地方
-1. 保證金計算
-目前保證金倍率是 string ，要將資料格式轉成 float 
-2. 新增欄位
-3. 保證金由小到大排序
-4. 抓取其他日的股票期貨價格
+## Pandas_ReadCSV.py
+
+Pandas.py 的優化版本，抓取完[保證金比例網站](https://www.taifex.com.tw/cht/5/stockMargining)之後，從[這網站下載 StockList](https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E6%99%BA%E6%85%A7%E9%81%B8%E8%82%A1&INDUSTRY_CAT=%E8%82%A1%E7%A5%A8%E6%9C%9F%E8%B2%A8%E6%A8%99%E7%9A%84)到 ./csv 目錄，讀取 csv 檔案再透過股票代碼合併。
+
+<br>
+
+合併之後再進行保證金計算
