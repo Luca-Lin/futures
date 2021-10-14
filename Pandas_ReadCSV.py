@@ -1,14 +1,21 @@
+from numpy import float32, float64, int64
 import pandas as pd
 from datetime import date
 import os
 
+def calculate_the_margin(date):
+    result_table = pd.read_csv("./csv/"+date+".csv")
+    result_table["股票價格保證金"] = result_table["成交"] * 2000 * (result_table["原始保證金適用比例"].apply(lambda x:x[0:-1]).astype(float32) / 100)
+    
+    result_table.to_csv('./csv/'+str(date)+'.csv',index=False)
 
 def main():
 
     # Get Current Date
     today = date.today()
 
-    # https://www.learncodewithmike.com/2020/11/python-pandas-dataframe-tutorial.html
+    # 參考 https://www.learncodewithmike.com/2020/11/python-pandas-dataframe-tutorial.html
+    # Get 保證金比例
     print("抓取資料1....")
 
     filepath = "./csv/margin.csv"
@@ -25,7 +32,7 @@ def main():
     print("OK")
 
     print("=========================================")
-
+    # Get 股票成交價 csv 檔案
     print("讀取CSV檔案....")
     filepath2 = "./csv/StockList.csv"
     if os.path.isfile(filepath2):
@@ -41,9 +48,12 @@ def main():
 
     result = pd.merge(margin_df, filter_price, on="股票期貨標的證券代號")
     print(result)
-
+    # 輸入檔案 檔名為日期
     print("合併成功....")
     result.to_csv('./csv/'+str(today)+'.csv',index=False)
+
+    # 呼叫計算保證金函式
+    calculate_the_margin(str(today))
 
     # print("按任意鍵結束")
     # input()
