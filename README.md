@@ -37,3 +37,8 @@ Pandas.py 的優化版本，爬蟲抓取完[保證金比例網站](https://www.t
 <br>
 
 合併之後再進行保證金計算
+
+## 輸出 .exe
+```
+PyInstaller -F .\Pandas_ReadCSV.py
+```
