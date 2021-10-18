@@ -1,12 +1,20 @@
-from numpy import float32, float64, int64
-import pandas as pd
+from numpy import float32
 from datetime import date
+import pandas as pd
 import os
+import re
 
 def calculate_the_margin(date):
+    # read result.csv
     result_table = pd.read_csv("./csv/"+date+".csv")
+
     result_table["股票價格保證金"] = result_table["成交"] * 2000 * (result_table["原始保證金適用比例"].apply(lambda x:x[0:-1]).astype(float32) / 100)
-    
+    # read "股票期貨  中文簡稱" if value has '小型*****' , recalculate
+    has_little = result_table["股票期貨  中文簡稱"].str.fullmatch(r'小型.+')
+    result_table.loc[has_little,"股票價格保證金"] = result_table.loc[has_little]["股票價格保證金"] /20
+    print("重新計算成功")
+
+
     result_table.to_csv('./csv/'+str(date)+'.csv',index=False)
 
 def main():
